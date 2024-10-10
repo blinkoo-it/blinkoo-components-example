@@ -1,9 +1,7 @@
 import {
-  AfterViewInit,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
-  OnInit,
   ViewChild,
 } from '@angular/core';
 import '@blinkoo/components';

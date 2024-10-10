@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-example": {
+    "angular-ssr-example": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular-example",
+            "outputPath": "dist/angular-ssr-example",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -39,15 +39,20 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "server": "src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "5MB",
-                  "maximumError": "6MB"
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -69,10 +74,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-example:build:production"
+              "buildTarget": "angular-ssr-example:build:production"
             },
             "development": {
-              "buildTarget": "angular-example:build:development"
+              "buildTarget": "angular-ssr-example:build:development"
             }
           },
           "defaultConfiguration": "development"
