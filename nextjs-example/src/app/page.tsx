@@ -11,7 +11,6 @@ export default function Home() {
       <Feed
         apiKey="YOUR_API_KEY"
         title="React Example"
-        assetsPath=""
       />
     </div>
   );

@@ -1,50 +1,45 @@
-# React + TypeScript + Vite
+# Blinkoo Feed React + Vite Example
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The steps to add the blinkoo feed dependency are:
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Add `@blinkoo/components` as a dependency in `package.json`
+```json
+"dependencies": {
+    "@blinkoo/components": "0.1.22"
+}
+```
+- Add `vite-plugin-static-copy` as a dev dependency in `package.json`
+```json
+"dev-dependencies": {
+  "vite-plugin-static-copy": "^1.0.6"
+}
+```
+- Set the `vite-plugin-static-copy` to copy library dependency files while building in `vite.config.ts`:
+```ts
+export default defineConfig({
+  plugins: [
+    react(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: "node_modules/@blinkoo/components/dist/blinkoo-feed/assets",
+          dest: "blinkoo-feed",
+        },
+        {
+          src: "node_modules/@blinkoo/components/dist/blinkoo-feed/canvaskit",
+          dest: "blinkoo-feed",
+        },
+      ],
+    }),
+  ],
+});
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Create the `Feed` react element (you can copy the file in this repository) and use it where you want to show the feed as in the following code:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```html
+<Feed
+    apiKey="YOUR_API_KEY"
+    title="Example Title"
+/>
 ```
