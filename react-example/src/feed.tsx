@@ -4,7 +4,6 @@ import "@blinkoo/components";
 
 export default function Feed(params: BlinkooFeedArgs) {
   return (
-    //@ts-ignore
     <blinkoo-feed
       title={params.title}
       filters={params.filters}
@@ -12,7 +11,6 @@ export default function Feed(params: BlinkooFeedArgs) {
       apiKey={params.apiKey}
       aspectRatio={params.aspectRatio}
       assetsPath={params.assetsPath}
-      //@ts-ignore
     ></blinkoo-feed>
   );
 }
