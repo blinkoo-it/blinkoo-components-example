@@ -2,10 +2,10 @@
 
 The steps to add the blinkoo feed dependency are:
 
-- Add `@blinkoo/components` as a dependency in `package.json`
+- Add `@blinkoo/components` as a dev-dependency in `package.json` because you have to copy the library in build phase as follows
 ```json
-"dependencies": {
-    "@blinkoo/components": "0.1.22"
+"dev-dependencies": {
+    "@blinkoo/components": "^0.2.2",
 }
 ```
 - Add `vite-plugin-static-copy` as a dev dependency in `package.json`

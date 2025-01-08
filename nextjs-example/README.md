@@ -2,10 +2,10 @@
 
 The steps to add the blinkoo feed dependency are:
 
-- Add `@blinkoo/components` as a dev dependency in `package.json`
+- Add `@blinkoo/components` as a dev-dependency in `package.json` because you have to copy the library in build phase as follows
 ```json
 "dev-dependencies": {
-    "@blinkoo/components": "0.1.22"
+    "@blinkoo/components": "^0.2.2",
 }
 ```
 - Since NextJS doesn't allow to configure Terser options, we need to disable code minification to let the feed work. So, in `next.config.js` add to the returned configuration the following property:

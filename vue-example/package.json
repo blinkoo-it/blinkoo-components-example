@@ -13,11 +13,11 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@blinkoo/components": "^0.1.22",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
+    "@blinkoo/components": "^0.2.2",
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^20.16.11",
     "@vitejs/plugin-vue": "^5.1.4",

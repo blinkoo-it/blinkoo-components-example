@@ -16,7 +16,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@blinkoo/components": "0.1.22",
+    "@blinkoo/components": "^0.2.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

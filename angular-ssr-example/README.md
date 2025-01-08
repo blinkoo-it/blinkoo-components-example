@@ -2,9 +2,11 @@
 
 The steps to add the blinkoo feed dependency are:
 
-- Add `@blinkoo/components` as dependency in `package.json`
+- Add `@blinkoo/components` as a dev-dependency in `package.json` because you have to copy the library in build phase as follows
 ```json
-"@blinkoo/components": "0.1.22"
+"dev-dependencies": {
+    "@blinkoo/components": "^0.2.2",
+}
 ```
 - In `angular.json`, add to the assets list the following dependencies of the feed
 ```json
