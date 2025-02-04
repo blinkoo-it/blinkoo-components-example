@@ -12,12 +12,11 @@ import {
 import { BlinkooFeedComponent } from '@blinkoo/components';
 
 @Component({
-  selector: 'app-feed',
-  standalone: true,
-  imports: [CommonModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './feed.component.html',
-  styleUrl: './feed.component.css',
+    selector: 'app-feed',
+    imports: [CommonModule],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './feed.component.html',
+    styleUrl: './feed.component.css'
 })
 export class FeedComponent implements OnInit {
   isBrowser: boolean = false;
