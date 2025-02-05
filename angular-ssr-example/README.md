@@ -51,6 +51,8 @@ export class AppComponent implements OnInit {
     }
 }
 ```
+*NB*: you can add to the DOM any component only after the library initialization is completed
+
 - Create the `FeedComponent` or `SingleVideoComponent` as made in this repository (you can copy it to your project). Remember to also copy the `BaseComponent` which implements the SSR logic to render the component only in the browser (similarly on how is imported the library in `app.component.ts`).
 
 - Now you can import your `FeedComponent` or any other component where you want to show the feed as in the following code:

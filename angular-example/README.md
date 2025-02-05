@@ -27,10 +27,30 @@ The steps to add the blinkoo feed dependency are:
     ]
 }
 ```
-- Created the `FeedComponent` or `SingleVideoComponent` as made in this repository (you can copy it to your project)
 
-Now you can import your component where you want to show the feed as in the following code:
+- Initialize the library in the `app.components.ts` adding the following code:
+```typescript
+export class AppComponent implements OnInit {
+  isInitialized = false;
+
+  ngOnInit(): void {
+    this.initBlinkooLibrary();
+  }
+
+  async initBlinkooLibrary() {
+    await BlinkooWebInit.init({
+      apiKey: 'YOUR_API_KEY',
+    });
+    this.isInitialized = true;
+  }
+}
+```
+*NB*: you can add to the DOM any component only after the library initialization is completed
+
+- Create the `FeedComponent` or `SingleVideoComponent` as made in this repository (you can copy it to your project)
+
+- Now you can import your `FeedComponent` or any other component where you want to show the feed as in the following code:
 
 ```html
-<app-feed filter="filter1,filter2" title="Example title" [aspectRatio]="0.5625"></app-feed>
+<app-feed filter="filter1,filter2" title="Example feed"></app-feed>
 ```
