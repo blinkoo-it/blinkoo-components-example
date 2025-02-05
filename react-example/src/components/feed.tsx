@@ -1,5 +1,5 @@
 "use client";
-import { BlinkooFeedArgs } from "@blinkoo/components/feed-args";
+import { BlinkooFeedArgs } from "@blinkoo/components";
 import "@blinkoo/components";
 
 export default function Feed(params: BlinkooFeedArgs) {
@@ -8,9 +8,8 @@ export default function Feed(params: BlinkooFeedArgs) {
       title={params.title}
       filters={params.filters}
       playlistFilter={params.playlistFilter}
-      apiKey={params.apiKey}
       aspectRatio={params.aspectRatio}
-      assetsPath={params.assetsPath}
+      feedPosition={params.feedPosition}
     ></blinkoo-feed>
   );
 }
