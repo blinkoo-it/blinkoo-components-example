@@ -23,12 +23,12 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "./node_modules/@blinkoo/components/dist/blinkoo-feed/assets",
+                "input": "./node_modules/@blinkoo/components/dist/assets",
                 "output": "/assets"
               },
               {
                 "glob": "**/*",
-                "input": "./node_modules/@blinkoo/components/dist/blinkoo-feed/canvaskit",
+                "input": "./node_modules/@blinkoo/components/dist/canvaskit",
                 "output": "/canvaskit"
               },
               {

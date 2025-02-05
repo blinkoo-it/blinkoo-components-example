@@ -1,1 +1,10 @@
-<app-feed></app-feed>
+<ng-container *ngIf="isInitialized">
+    <div style="height: 600px;">
+        <app-feed *ngIf="shownId == 1" title="Example feed" [aspectRatio]="0.8"></app-feed>
+        <app-single-video *ngIf="shownId == 2" postId="3913cf17-36a3-4d28-a6a5-b268e671659d"
+            [aspectRatio]="0.5625"></app-single-video>
+    </div>
+
+    <button (click)="changeShownId(1)">Show feed</button>
+    <button (click)="changeShownId(2)">Show single video</button>
+</ng-container>
