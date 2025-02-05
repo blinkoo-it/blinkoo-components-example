@@ -4,37 +4,30 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
   Inject,
+  Input,
   OnInit,
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
 
 import { BlinkooFeedComponent } from '@blinkoo/components';
+import { BaseComponent } from '../base-component/base-component.component';
 
 @Component({
-    selector: 'app-feed',
-    imports: [CommonModule],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    templateUrl: './feed.component.html',
-    styleUrl: './feed.component.css'
+  selector: 'app-feed',
+  imports: [CommonModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  templateUrl: './feed.component.html'
 })
-export class FeedComponent implements OnInit {
-  isBrowser: boolean = false;
-  feedImported: boolean = false;
-  
-  apiKey = 'YOUR_API_KEY';
+export class FeedComponent extends BaseComponent {
   @ViewChild('feed') feed!: ElementRef<BlinkooFeedComponent>;
+  @Input() title?: string;
+  @Input() filters?: string;
+  @Input() playlistFilter?: string;
+  @Input() aspectRatio?: number;
+  @Input() feedPosition?: number;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
-
-  ngOnInit(): void {
-    this.isBrowser = isPlatformBrowser(this.platformId);
-    
-    if (this.isBrowser) {
-      import("@blinkoo/components").then(module => {
-        // Utilizza la libreria solo lato client
-        this.feedImported = true;
-      });
-    }
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    super(platformId);
   }
 }

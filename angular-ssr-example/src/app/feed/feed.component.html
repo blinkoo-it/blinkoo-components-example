@@ -1,8 +1,5 @@
-<div *ngIf="feedImported" style="height: 600px; width: 300px">
-  <blinkoo-feed
-    #feed
-    aspectRatio="0.5625"
-    [apiKey]="YOUR_API_KEY"
-    title="Example feed"
-  ></blinkoo-feed>
-</div>
+<ng-container *ngIf="renderReady">
+  <blinkoo-feed #feed [title]="title" [filters]="filters" [playlistFilter]="playlistFilter" [aspectRatio]="aspectRatio"
+    [feedPosition]="feedPosition">
+  </blinkoo-feed>
+</ng-container>
