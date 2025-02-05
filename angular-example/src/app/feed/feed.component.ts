@@ -12,8 +12,7 @@ import { BlinkooFeedComponent } from '@blinkoo/components';
   selector: 'app-feed',
   imports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './feed.component.html',
-  styleUrl: './feed.component.css'
+  templateUrl: './feed.component.html'
 })
 export class FeedComponent {
   @ViewChild('feed') feed!: ElementRef<BlinkooFeedComponent>;

@@ -7,8 +7,7 @@ import { BlinkooSingleVideoComponent } from '@blinkoo/components';
   selector: 'app-single-video',
   imports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './single-video.component.html',
-  styleUrl: './single-video.component.css'
+  templateUrl: './single-video.component.html'
 })
 export class SingleVideoComponent {
   @ViewChild('singleVideo') singleVideo!: ElementRef<BlinkooSingleVideoComponent>;

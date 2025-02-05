@@ -8,7 +8,6 @@ import { SingleVideoComponent } from './single-video/single-video.component';
   selector: 'app-root',
   imports: [FeedComponent, SingleVideoComponent, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
   title = 'angular-example';
