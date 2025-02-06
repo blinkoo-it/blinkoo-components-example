@@ -21,12 +21,12 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: "node_modules/@blinkoo/components/dist/blinkoo-feed/assets", // NPM package folder's path
-          dest: "blinkoo-feed", // Destination folder inside `outDir`
+          src: "node_modules/@blinkoo/components/dist/assets", // NPM package folder's path
+          dest: "blinkoo-assets", // Destination folder inside `outDir`
         },
         {
-          src: "node_modules/@blinkoo/components/dist/blinkoo-feed/canvaskit", // NPM package folder's path
-          dest: "blinkoo-feed", // Destination folder inside `outDir`
+          src: "node_modules/@blinkoo/components/dist/canvaskit", // NPM package folder's path
+          dest: "blinkoo-assets", // Destination folder inside `outDir`
         },
       ],
     }),
