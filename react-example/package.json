@@ -14,7 +14,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@blinkoo/components": "^1.0.0-beta.5",
+    "@blinkoo/components": "1.0.0-beta.6",
     "@eslint/js": "^9.11.1",
     "@types/react": "^18.3.10",
     "@types/react-dom": "^18.3.0",
