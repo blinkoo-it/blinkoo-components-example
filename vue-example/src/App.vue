@@ -10,7 +10,7 @@ const shownItem = ref(1);
 
 const initBlinkooComponents = async () => {
     await BlinkooWebInit.init({
-        apiKey: "9anOQBuYKUvtZ5xKWs0vSruGFYkDDyfoBNksxdh6lVWTHMZYtXLJncqGbrnkMDVwWXzqzyg3r5v1FYGHuoZML6ujNb3yQyVn",
+        apiKey: "YOUR_API_KEY",
         assetsPath: "blinkoo-assets/"
     });
     isInitialized.value = true;

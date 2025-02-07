@@ -17,7 +17,7 @@
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
-    "@blinkoo/components": "1.0.0-beta.6",
+    "@blinkoo/components": "1.0.0-beta.7",
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^20.16.11",
     "@vitejs/plugin-vue": "^5.1.4",
