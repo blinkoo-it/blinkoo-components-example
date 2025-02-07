@@ -6,6 +6,6 @@ Examples in different web frameworks to use `@blinkoo/components`
 |:------------:|--------|---------------------------------------------|-----------------------------------------------|
 | Angular      | ✅     |                                             |    [ link ]( /angular-example/README.md )     |
 | Angular SSR  | ✅     |                                             |    [ link ]( /angular-ssr-example/README.md ) |
-| React + Vite | ✅     |                                             |    [ link ]( /nextjs-example/README.md )      |
-| NextJS       | ✅     |                                             |    [ link ]( /react-example/README.md )       |
+| React + Vite | ✅     |                                             |    [ link ]( /react-example/README.md )      |
+| NextJS       | ✅     |                                             |    [ link ]( /nextjs-example/README.md )       |
 | VueJS        | ✅     |                                             |    [ link ]( /vue-example/README.md )         |
