@@ -1,4 +1,4 @@
-# Blinkoo Feed Angular SSR Example
+# Blinkoo Components Angular SSR Example
 
 The steps to add the blinkoo feed dependency are:
 

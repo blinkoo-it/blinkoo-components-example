@@ -1,4 +1,4 @@
-# Blinkoo Feed NextJS Example
+# Blinkoo Components NextJS Example
 
 The steps to add the blinkoo feed dependency are:
 

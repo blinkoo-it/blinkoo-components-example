@@ -1,4 +1,4 @@
-# Blinkoo Feed VueJS
+# Blinkoo Components VueJS Example
 
 The steps to add the blinkoo feed dependency are:
 

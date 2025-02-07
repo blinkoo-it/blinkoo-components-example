@@ -1,4 +1,4 @@
-# Blinkoo Feed Angular Example
+# Blinkoo Components Angular Example
 
 The steps to add the blinkoo feed dependency are:
 

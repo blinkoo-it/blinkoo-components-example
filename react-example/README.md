@@ -1,4 +1,4 @@
-# Blinkoo Feed React + Vite Example
+# Blinkoo Components React + Vite Example
 
 The steps to add the blinkoo feed dependency are:
 
