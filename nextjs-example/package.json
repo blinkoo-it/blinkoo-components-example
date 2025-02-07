@@ -4,19 +4,19 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "copyBlinkooFeed": "cp -r node_modules/@blinkoo/components/dist/blinkoo-feed public",
-    "dev": "npm run copyBlinkooFeed && next dev",
-    "build": "npm run copyBlinkooFeed && next build",
+    "copyBlinkooAssets": "rm -r public/blinkoo-assets 2> /dev/null && cp -r node_modules/@blinkoo/components/dist public/blinkoo-assets",
+    "dev": "npm run copyBlinkooAssets && next dev",
+    "build": "npm run copyBlinkooAssets && next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "14.2.15",
-    "react": "^18",
-    "react-dom": "^18"
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@blinkoo/components": "^0.2.2",
+    "@blinkoo/components": "1.0.0-beta.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
