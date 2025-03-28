@@ -6,7 +6,7 @@ The steps to add the blinkoo feed dependency are:
 
 ```json
 "dev-dependencies": {
-    "@blinkoo/components": "^1.0.0",
+    "@blinkoo/components": "^1.1.0",
 }
 ```
 
