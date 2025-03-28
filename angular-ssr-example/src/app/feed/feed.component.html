@@ -1,5 +1,12 @@
 <ng-container *ngIf="renderReady">
-  <blinkoo-feed #feed [title]="title" [filters]="filters" [playlistFilter]="playlistFilter" [aspectRatio]="aspectRatio"
-    [feedPosition]="feedPosition">
+  <blinkoo-feed
+    #feed
+    [title]="title"
+    [filters]="filters"
+    [playlistFilter]="playlistFilter"
+    [aspectRatio]="aspectRatio"
+    [feedPosition]="feedPosition"
+    [configurations]="jsonConfigurations"
+  >
   </blinkoo-feed>
 </ng-container>

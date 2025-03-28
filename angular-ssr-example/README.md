@@ -3,12 +3,15 @@
 The steps to add the blinkoo feed dependency are:
 
 - Add `@blinkoo/components` as a dev-dependency in `package.json` because you have to copy the library in build phase as follows
+
 ```json
 "dev-dependencies": {
     "@blinkoo/components": "^1.0.0",
 }
 ```
+
 - In `angular.json`, add to the assets list the following dependencies of the feed
+
 ```json
 ...
 "options": {
@@ -27,31 +30,34 @@ The steps to add the blinkoo feed dependency are:
     ]
 }
 ```
+
 - Initialize the library. Since it could not be loaded during the server-side rendering stage, we need to import the library only on the browser. To do so, in the `app.components.ts` add the following code:
+
 ```typescript
 type BlinkooModule = typeof import("@blinkoo/components");
 
 export class AppComponent implements OnInit {
-    isInitialized = false;
+  isInitialized = false;
 
-    constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
-    ngOnInit(): void {
+  ngOnInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
     import("@blinkoo/components").then((blinkooModule) => {
-        this.initBlinkooLibrary(blinkooModule);
+      this.initBlinkooLibrary(blinkooModule);
     });
-    }
+  }
 
-    async initBlinkooLibrary(blinkooModule: BlinkooModule) {
+  async initBlinkooLibrary(blinkooModule: BlinkooModule) {
     await blinkooModule.BlinkooWebInit.init({
-        apiKey: 'YOUR_API_KEY',
+      customApiBasePath: "http://localhost:4000", // only for development, remove parameter in production
     });
     this.isInitialized = true;
-    }
+  }
 }
 ```
-*NB*: you can add to the DOM any component only after the library initialization is completed
+
+_NB_: you can add to the DOM any component only after the library initialization is completed. Also, importing any component or utility code on the server side will break the code, so they must be imported only on browser.
 
 - Create the `FeedComponent` or `SingleVideoComponent` as made in this repository (you can copy it to your project). Remember to also copy the `BaseComponent` which implements the SSR logic to render the component only in the browser (similarly on how is imported the library in `app.component.ts`).
 
