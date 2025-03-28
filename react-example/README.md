@@ -3,18 +3,23 @@
 The steps to add the blinkoo feed dependency are:
 
 - Add `@blinkoo/components` as a dev-dependency in `package.json` because you have to copy the library in build phase as follows
+
 ```json
 "dev-dependencies": {
-    "@blinkoo/components": "^1.0.0",
+    "@blinkoo/components": "^1.1.0",
 }
 ```
+
 - Add `vite-plugin-static-copy` as a dev dependency in `package.json`
+
 ```json
 "dev-dependencies": {
   "vite-plugin-static-copy": "^1.0.6"
 }
 ```
+
 - Set the `vite-plugin-static-copy` to copy library dependency files while building in `vite.config.ts`:
+
 ```ts
 export default defineConfig({
   plugins: [
@@ -34,6 +39,7 @@ export default defineConfig({
   ],
 });
 ```
+
 - Initialize the library in the `App.tsx` adding the following code:
 
 ```typescript
@@ -41,17 +47,17 @@ function App() {
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
   const [shownItem, setShownItem] = useState<number>(1);
 
-  useEffect(() => {
-    initBlinkooComponents();
-  }, []);
-
-  let initBlinkooComponents = async () => {
+  const initBlinkooComponents = async () => {
     await BlinkooWebInit.init({
-      apiKey: "API_KEY",
-      assetsPath: "blinkoo-assets/"
+      assetsPath: "blinkoo-assets/",
+      customApiBasePath: "http://localhost:4000", // only for development, remove parameter in production
     });
     setIsInitialized(true);
   };
+
+  useEffect(() => {
+    initBlinkooComponents();
+  }, []);
 
   if (!isInitialized) return <></>;
 
@@ -60,14 +66,9 @@ function App() {
   );
 }
 ```
-*NB*: you can add to the DOM any component only after the library initialization is completed
+
+_NB_: you can add to the DOM any component only after the library initialization is completed
 
 - Create the `Feed` or `SingleVideo` react element (you can copy the file in this repository)
 
-- Use any component that you want and as in the following code:
-
-```html
-<Feed
-    title="Example Title"
-/>
-```
+- Now you can use any component that you want

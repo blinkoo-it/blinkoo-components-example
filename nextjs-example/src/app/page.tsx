@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { BlinkooFeedConfiguration } from "@blinkoo/components";
 import { useEffect, useState } from "react";
 
 type BlinkooModule = typeof import("@blinkoo/components");
@@ -47,11 +48,19 @@ export default function Home() {
   }, [blinkooModule]);
 
   if (!blinkooModule || !isInitialized) return null;
+
+  const configurations: BlinkooFeedConfiguration = {
+    isCreatorEnabled: true,
+  };
   return (
     <>
       <div style={{ height: "600px" }}>
         {shownId == 1 ? (
-          <Feed title="Next Example" aspectRatio={0.5625} />
+          <Feed
+            title="Next Example"
+            aspectRatio={0.5625}
+            configurations={configurations}
+          />
         ) : (
           <SingleVideo title="Single video" postId="POST_ID" aspectRatio={1} />
         )}

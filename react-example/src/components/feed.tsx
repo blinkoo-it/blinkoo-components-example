@@ -1,8 +1,13 @@
 "use client";
-import { BlinkooFeedArgs } from "@blinkoo/components";
+import {
+  BlinkooFeedArgs,
+  BlinkooFeedConfiguration,
+  BlinkooWebUtils,
+} from "@blinkoo/components";
 import "@blinkoo/components";
 
-export default function Feed(params: BlinkooFeedArgs) {
+type FeedArgs = BlinkooFeedArgs & { configurations?: BlinkooFeedConfiguration };
+export default function Feed(params: FeedArgs) {
   return (
     <blinkoo-feed
       title={params.title}
@@ -10,6 +15,11 @@ export default function Feed(params: BlinkooFeedArgs) {
       playlistFilter={params.playlistFilter}
       aspectRatio={params.aspectRatio}
       feedPosition={params.feedPosition}
+      configurations={
+        params.configurations
+          ? BlinkooWebUtils.encodeObject(params.configurations)
+          : undefined
+      }
     ></blinkoo-feed>
   );
 }
