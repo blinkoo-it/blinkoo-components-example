@@ -6,13 +6,17 @@ import {
   ViewChild,
 } from '@angular/core';
 import '@blinkoo/components';
-import { BlinkooFeedComponent } from '@blinkoo/components';
+import {
+  BlinkooFeedComponent,
+  BlinkooFeedConfiguration,
+  BlinkooWebUtils,
+} from '@blinkoo/components';
 
 @Component({
   selector: 'app-feed',
   imports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './feed.component.html'
+  templateUrl: './feed.component.html',
 })
 export class FeedComponent {
   @ViewChild('feed') feed!: ElementRef<BlinkooFeedComponent>;
@@ -21,4 +25,9 @@ export class FeedComponent {
   @Input() playlistFilter?: string;
   @Input() aspectRatio?: number;
   @Input() feedPosition?: number;
+  @Input() configurations?: BlinkooFeedConfiguration;
+
+  get jsonConfigurations(): string {
+    return BlinkooWebUtils.encodeObject(this.configurations);
+  }
 }

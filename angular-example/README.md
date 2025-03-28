@@ -3,12 +3,15 @@
 The steps to add the blinkoo feed dependency are:
 
 - Add `@blinkoo/components` as a dev-dependency in `package.json` because you have to copy the library in build phase as follows
+
 ```json
 "dev-dependencies": {
     "@blinkoo/components": "^1.0.0",
 }
 ```
+
 - In `angular.json`, add to the assets list the following dependencies of the feed
+
 ```json
 ...
 "options": {
@@ -29,6 +32,7 @@ The steps to add the blinkoo feed dependency are:
 ```
 
 - Initialize the library in the `app.components.ts` adding the following code:
+
 ```typescript
 export class AppComponent implements OnInit {
   isInitialized = false;
@@ -39,13 +43,14 @@ export class AppComponent implements OnInit {
 
   async initBlinkooLibrary() {
     await BlinkooWebInit.init({
-      apiKey: 'YOUR_API_KEY',
+      customApiBasePath: "http://localhost:4000", // only for development, remove parameter in production
     });
     this.isInitialized = true;
   }
 }
 ```
-*NB*: you can add to the DOM any component only after the library initialization is completed
+
+_NB_: you can add to the DOM any component only after the library initialization is completed
 
 - Create the `FeedComponent` or `SingleVideoComponent` as made in this repository (you can copy it to your project)
 

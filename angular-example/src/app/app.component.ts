@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedComponent } from './feed/feed.component';
-import { BlinkooWebInit } from '@blinkoo/components';
+import { BlinkooFeedConfiguration, BlinkooWebInit } from '@blinkoo/components';
 import { CommonModule } from '@angular/common';
 import { SingleVideoComponent } from './single-video/single-video.component';
 
@@ -12,7 +12,10 @@ import { SingleVideoComponent } from './single-video/single-video.component';
 export class AppComponent implements OnInit {
   title = 'angular-example';
   isInitialized = false;
-  shownId = 1
+  shownId = 1;
+  configurations: BlinkooFeedConfiguration = {
+    isCreatorEnabled: true,
+  };
 
   ngOnInit(): void {
     this.initBlinkooLibrary();
@@ -20,7 +23,7 @@ export class AppComponent implements OnInit {
 
   async initBlinkooLibrary() {
     await BlinkooWebInit.init({
-      apiKey: 'YOUR_API_KEY',
+      customApiBasePath: 'http://localhost:4000', // only for development, remove parameter in production
     });
     this.isInitialized = true;
   }
