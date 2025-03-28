@@ -7,7 +7,7 @@ type BlinkooModule = typeof import("@blinkoo/components");
 
 const Feed = dynamic(() => import("./components/feed"), { ssr: false });
 const SingleVideo = dynamic(() => import("./components/single-video"), {
-  ssr: false
+  ssr: false,
 });
 
 export default function Home() {
@@ -32,15 +32,15 @@ export default function Home() {
 
     const initLib = async () => {
       await blinkooModule.BlinkooWebInit.init({
-        apiKey: "YOUR_API_KEY",
         assetsPath: assetsPath,
-        canvasKitJs: (window as any)?.CanvasKitInit
+        canvasKitJs: (window as any)?.CanvasKitInit,
+        customApiBasePath: "http://localhost:4000", // only for development, remove parameter in production
       });
       setIsInitialized(true);
     };
 
-    const script = document.createElement('script');
-    script.type = 'module';
+    const script = document.createElement("script");
+    script.type = "module";
     script.src = blinkooModule.BlinkooWebInit.getCanvaskitJsPath(assetsPath);
     script.onload = () => initLib();
     document.body.appendChild(script);
@@ -50,11 +50,11 @@ export default function Home() {
   return (
     <>
       <div style={{ height: "600px" }}>
-        {shownId == 1 ?
-          <Feed
-            title="Next Example" aspectRatio={0.5625}
-          /> : <SingleVideo title="Single video" postId="POST_ID" aspectRatio={1} />
-        }
+        {shownId == 1 ? (
+          <Feed title="Next Example" aspectRatio={0.5625} />
+        ) : (
+          <SingleVideo title="Single video" postId="POST_ID" aspectRatio={1} />
+        )}
       </div>
       <input type="button" onClick={() => setShownId(1)} value="Show feed" />
       <input type="button" onClick={() => setShownId(2)} value="Show video" />
