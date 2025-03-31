@@ -1,31 +1,38 @@
 <script setup lang="ts">
-import { BlinkooWebUtils } from '@blinkoo/components'
+import { BlinkooWebUtils, BlinkooFeedConfiguration } from '@blinkoo/components'
 
 const props = withDefaults(
   defineProps<{
     title?: string
+    filters?: string
+    playlistFilter?: string
     aspectRatio?: number
-    postId?: string
-    configurations?: object
+    feedPosition?: number
+    configurations?: BlinkooFeedConfiguration
   }>(),
   {
     // default values
     title: '',
+    filters: undefined,
+    playlistFilter: undefined,
     aspectRatio: undefined,
-    postId: undefined,
+    feedPosition: undefined,
     configurations: undefined,
   },
 )
 const serializedConfiguration: string | undefined = props.configurations
   ? BlinkooWebUtils.encodeObject(props.configurations)
   : undefined
+console.log('FeedVideo config', props.configurations, serializedConfiguration)
 </script>
 
 <template>
   <blinkoo-feed
     :title="title"
+    :filters="filters"
+    :playlistFilter="playlistFilter"
     :aspectRatio="aspectRatio"
-    :postId="postId"
+    :feedPosition="feedPosition"
     :configurations="serializedConfiguration"
   />
 </template>

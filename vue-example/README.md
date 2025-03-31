@@ -52,8 +52,8 @@ export default defineConfig({
 
   const initBlinkooComponents = async () => {
     await BlinkooWebInit.init({
-      apiKey: 'YOUR_API_KEY',
       assetsPath: 'blinkoo-assets/',
+      customApiBasePath: 'http://localhost:4000', // only for development, remove parameter in production
     })
     isInitialized.value = true
   }
@@ -66,7 +66,7 @@ export default defineConfig({
 
 _NB_: you can add to the DOM any component only after the library initialization is completed
 
-- Create the `Feed.vue` and `SingleVide.vue` component (you can copy the file in this repository)
+- Create the `Feed.vue` and `SingleVideo.vue` component (you can copy the file in this repository)
 
 - Use any component where you want as in the next example
 
