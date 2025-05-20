@@ -9,11 +9,7 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: "node_modules/@blinkoo/components/dist/assets", // NPM package folder's path
-          dest: "blinkoo-assets", // Destination folder inside `outDir`
-        },
-        {
-          src: "node_modules/@blinkoo/components/dist/canvaskit", // NPM package folder's path
+          src: "node_modules/@blinkoo/components/assets", // NPM package folder's path
           dest: "blinkoo-assets", // Destination folder inside `outDir`
         },
       ],

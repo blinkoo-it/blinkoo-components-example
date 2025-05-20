@@ -2,11 +2,11 @@
 
 The steps to add the blinkoo feed dependency are:
 
-- Add `@blinkoo/components` as a dev-dependency in `package.json` because you have to copy the library in build phase as follows
+- Add `@blinkoo/components` as a dependency in `package.json`
 
 ```json
-"dev-dependencies": {
-    "@blinkoo/components": "^1.1.0",
+"dependencies": {
+    "@blinkoo/components": "^2.0.0",
 }
 ```
 
@@ -15,6 +15,14 @@ The steps to add the blinkoo feed dependency are:
 ```json
 "dev-dependencies": {
   "vite-plugin-static-copy": "^1.0.6"
+}
+```
+
+- Copy the blinkoo assets in the `public` folder while running the app in development
+
+```json
+"scripts": {
+    "dev": "cp -rf node_modules/@blinkoo/components/assets public/blinkoo-assets & vite",
 }
 ```
 
@@ -27,11 +35,7 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: "node_modules/@blinkoo/components/dist/assets",
-          dest: "blinkoo-assets",
-        },
-        {
-          src: "node_modules/@blinkoo/components/dist/canvaskit",
+          src: "node_modules/@blinkoo/components/assets",
           dest: "blinkoo-assets",
         },
       ],
@@ -40,35 +44,12 @@ export default defineConfig({
 });
 ```
 
-- Initialize the library in the `App.tsx` adding the following code:
+- Create a component wrapper for blinkoo-components (you can copy the ones in this repository in `src/components`)
 
-```typescript
-function App() {
-  const [isInitialized, setIsInitialized] = useState<boolean>(false);
-  const [shownItem, setShownItem] = useState<number>(1);
+- Use any react component inside your code, like:
 
-  const initBlinkooComponents = async () => {
-    await BlinkooWebInit.init({
-      assetsPath: "blinkoo-assets/",
-      customApiBasePath: "http://localhost:4000", // only for development, remove parameter in production
-    });
-    setIsInitialized(true);
-  };
-
-  useEffect(() => {
-    initBlinkooComponents();
-  }, []);
-
-  if (!isInitialized) return <></>;
-
-  return (
-    ...
-  );
-}
+```tsx
+<Feed ref={feedRef} assets-path="blinkoo-assets/" title="Amazing place"></Feed>
 ```
 
-_NB_: you can add to the DOM any component only after the library initialization is completed
-
-- Create the `Feed` or `SingleVideo` react element (you can copy the file in this repository)
-
-- Now you can use any component that you want
+For more information on components parameters, check out our [documentation](https://documentation.blinkoo.com)
