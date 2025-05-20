@@ -2,10 +2,10 @@
 
 The steps to add the blinkoo feed dependency are:
 
-- Add `@blinkoo/components` as a dev-dependency in `package.json` because you have to copy the library in build phase as follows
+- Add `@blinkoo/components` as a dependency in `package.json`
 
 ```json
-"dev-dependencies": {
+"dependencies": {
     "@blinkoo/components": "^2.0.0",
 }
 ```
@@ -25,7 +25,7 @@ The steps to add the blinkoo feed dependency are:
 }
 ```
 
-- Create a component wrapper for blinkoo-components (like the one in this repository un `src/app/components`)
+- Create a component wrapper for blinkoo-components (you can copy the ones in this repository un `src/app/components`)
 
 - Now you can import your desired wrapper component where you want to show the feed as in the following code:
 
