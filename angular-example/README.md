@@ -6,7 +6,7 @@ The steps to add the blinkoo feed dependency are:
 
 ```json
 "dev-dependencies": {
-    "@blinkoo/components": "^1.1.0",
+    "@blinkoo/components": "^2.0.0",
 }
 ```
 
@@ -16,46 +16,21 @@ The steps to add the blinkoo feed dependency are:
 ...
 "options": {
     "assets": [
-        ...
         {
             "glob": "**/*",
             "input": "./node_modules/@blinkoo/components/dist/assets",
-            "output": "/assets"
-        },
-        {
-            "glob": "**/*",
-            "input": "./node_modules/@blinkoo/components/dist/canvaskit",
-            "output": "/canvaskit"
-        },
+            "output": "/blinkoo-assets"
+        }
     ]
 }
 ```
 
-- Initialize the library in the `app.components.ts` adding the following code:
+- Create a component wrapper for blinkoo-components (like the one in this repository un `src/app/components`)
 
-```typescript
-export class AppComponent implements OnInit {
-  isInitialized = false;
-
-  ngOnInit(): void {
-    this.initBlinkooLibrary();
-  }
-
-  async initBlinkooLibrary() {
-    await BlinkooWebInit.init({
-      customApiBasePath: "http://localhost:4000", // only for development, remove parameter in production
-    });
-    this.isInitialized = true;
-  }
-}
-```
-
-_NB_: you can add to the DOM any component only after the library initialization is completed
-
-- Create the `FeedComponent` or `SingleVideoComponent` as made in this repository (you can copy it to your project)
-
-- Now you can import your `FeedComponent` or any other component where you want to show the feed as in the following code:
+- Now you can import your desired wrapper component where you want to show the feed as in the following code:
 
 ```html
-<app-feed filter="filter1,filter2" title="Example feed"></app-feed>
+<app-feed filter="filter1,filter2" title="Example feed" assetsPath="./blinkoo-assets"></app-feed>
 ```
+
+For more information on components parameters, check out our [documentation](https://documentation.blinkoo.com)

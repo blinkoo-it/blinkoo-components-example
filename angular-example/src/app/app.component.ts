@@ -1,34 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import { FeedComponent } from './feed/feed.component';
-import { BlinkooFeedConfiguration, BlinkooWebInit } from '@blinkoo/components';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SingleVideoComponent } from './single-video/single-video.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { SingleVideoComponent } from './components/single-video/single-video.component';
+import { InsightComponent } from './components/insight/insight.component';
 
 @Component({
   selector: 'app-root',
-  imports: [FeedComponent, SingleVideoComponent, CommonModule],
+  imports: [
+    FeedComponent,
+    SingleVideoComponent,
+    CommonModule,
+    InsightComponent,
+  ],
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
+  @ViewChild('insight')
+  insight!: InsightComponent;
+
+  @ViewChild('feed')
+  feed!: FeedComponent;
+
   title = 'angular-example';
-  isInitialized = false;
   shownId = 1;
-  configurations: BlinkooFeedConfiguration = {
-    isCreatorEnabled: true,
-  };
-
-  ngOnInit(): void {
-    this.initBlinkooLibrary();
-  }
-
-  async initBlinkooLibrary() {
-    await BlinkooWebInit.init({
-      customApiBasePath: 'http://localhost:4000', // only for development, remove parameter in production
-    });
-    this.isInitialized = true;
-  }
+  showCreator = false;
 
   changeShownId(id: number) {
     this.shownId = id;
+  }
+
+  toggleCreator() {
+    this.showCreator = !this.showCreator;
+  }
+
+  togglePlayFeed() {
+    this.feed.togglePlay();
+  }
+
+  sendCustomEvent() {
+    this.insight.sendCustomEvent('custom event 1', {
+      param1: 'value 1',
+      param2: 'value2',
+    });
   }
 }
