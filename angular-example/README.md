@@ -25,7 +25,7 @@ The steps to add the blinkoo feed dependency are:
 }
 ```
 
-- Create a component wrapper for blinkoo-components (you can copy the ones in this repository un `src/app/components`)
+- Create a component wrapper for blinkoo-components (you can copy the ones in this repository in `src/app/components`)
 
 - Now you can import your desired wrapper component where you want to show the feed as in the following code:
 
