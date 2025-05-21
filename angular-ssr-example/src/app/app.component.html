@@ -14,6 +14,7 @@
 
   } @if (shownId === 2) {
   <app-single-video
+    #singleVideo
     postId="ccb2a799-1aa1-40c9-a431-7dae83a8f61d"
     assetsPath="blinkoo-assets/"
     customBaseUrl="http://localhost:4000"
@@ -31,9 +32,6 @@
 <button (click)="changeShownId(1)">Show feed</button>
 <button (click)="togglePlayFeed()">Toggle feed play</button>
 <button (click)="changeShownId(2)">Show single video</button>
+<button (click)="togglePlayVideo()">Toggle video play</button>
 <button (click)="toggleCreator()">Toggle creator</button>
 <button (click)="sendCustomEvent()">Track event</button>
-
-<!-- 
-  <button (click)="changeShownId(1)">Show feed</button>
-  <button (click)="changeShownId(2)">Show single video</button> -->

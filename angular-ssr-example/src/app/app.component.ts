@@ -18,6 +18,9 @@ export class AppComponent {
   @ViewChild('feed')
   feed!: FeedComponent;
 
+  @ViewChild('singleVideo')
+  video!: SingleVideoComponent;
+
   @ViewChild('insight')
   insight!: InsightComponent;
 
@@ -35,6 +38,10 @@ export class AppComponent {
 
   togglePlayFeed() {
     this.feed.togglePlay();
+  }
+
+  togglePlayVideo() {
+    this.video.togglePlay();
   }
 
   sendCustomEvent() {
