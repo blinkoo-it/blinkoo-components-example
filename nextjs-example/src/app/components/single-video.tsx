@@ -1,41 +1,47 @@
 "use client";
+
 import {
-  BlinkooFeedConfiguration,
-  BlinkooSingleVideoArgs,
+  BlinkooSingleVideoAttributes,
+  BlinkooSingleVideoElement,
 } from "@blinkoo/components";
-import { useEffect, useState } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
+import BlinkooComponentWrapper from "./blinkoo-component-wrapper";
 
-type BlinkooWebUtils = typeof import("@blinkoo/components").BlinkooWebUtils;
-type SingleVideoArgs = BlinkooSingleVideoArgs & {
-  configurations?: BlinkooFeedConfiguration;
-};
-let blinkooWebUtils: BlinkooWebUtils | undefined = undefined;
+type SingleVideoArgs = Omit<BlinkooSingleVideoAttributes, keyof HTMLElement>;
 
-export default function SingleVideo(params: SingleVideoArgs) {
-  const [init, setInit] = useState<boolean>(false);
-
-  useEffect(() => {
-    // React > 18 in development mode runs this useEffect twice
-    // To avoid double blinkoo module initialization, we check if the module
-    // already exists
-    if (init) return;
-
-    import("@blinkoo/components").then((blinkooModule) => {
-      blinkooWebUtils = blinkooModule.BlinkooWebUtils;
-      setInit(true);
-    });
-  }, []);
-
-  return (
-    <blinkoo-single-video
-      title={params.title}
-      aspectRatio={params.aspectRatio}
-      postId={params.postId}
-      configurations={
-        init && params.configurations
-          ? blinkooWebUtils?.encodeObject(params.configurations)
-          : undefined
-      }
-    ></blinkoo-single-video>
-  );
+export interface SingleVideoRef {
+  togglePlay: () => void;
 }
+
+const SingleVideo = forwardRef<SingleVideoRef, SingleVideoArgs>(
+  (params, ref) => {
+    const singleVideoRef = useRef<BlinkooSingleVideoElement>(null);
+
+    useImperativeHandle(ref, () => ({
+      togglePlay: () => singleVideoRef.current?.togglePlay(),
+    }));
+
+    return (
+      <BlinkooComponentWrapper>
+        <blinkoo-single-video
+          ref={singleVideoRef}
+          environment={params.environment}
+          custom-base-url={params["custom-base-url"]}
+          assets-path={params["assets-path"]}
+          external-user-id={params["external-user-id"]}
+          utm-source={params["utm-source"]}
+          utm-campaign={params["utm-campaign"]}
+          referrer={params.referrer}
+          component-id={params["component-id"]}
+          post-id={params["post-id"]}
+          autoplay={params.autoplay}
+          muted={params.muted}
+          show-creator={params["show-creator"]}
+        ></blinkoo-single-video>
+      </BlinkooComponentWrapper>
+    );
+  }
+);
+
+SingleVideo.displayName = "SingleVideo";
+export default SingleVideo;
