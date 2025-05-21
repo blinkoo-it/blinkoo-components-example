@@ -3,13 +3,11 @@ import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
-  Inject,
   Input,
-  PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
 import { BaseComponent } from '../base-component/base-component.component';
-import { BlinkooFeedConfiguration } from '@blinkoo/components';
+import { BlinkooSingleVideoElement } from '@blinkoo/components';
 
 @Component({
   selector: 'app-single-video',
@@ -18,17 +16,18 @@ import { BlinkooFeedConfiguration } from '@blinkoo/components';
   templateUrl: './single-video.component.html',
 })
 export class SingleVideoComponent extends BaseComponent {
-  @ViewChild('singleVideo') singleVideo!: ElementRef<SingleVideoComponent>;
+  @ViewChild('singleVideo')
+  singleVideo!: ElementRef<BlinkooSingleVideoElement>; // TODO put correct interface
+
+  @Input() customBaseUrl?: string;
+  @Input() assetsPath?: string;
+  @Input() externalCustomerId?: string;
+  @Input() utmSource?: string;
+  @Input() utmCampaign?: string;
+  @Input() referrer?: string;
+  @Input() componentId?: string;
   @Input() postId?: string;
-  @Input() title?: string;
-  @Input() aspectRatio?: number;
-  @Input() configurations?: BlinkooFeedConfiguration;
-
-  constructor(@Inject(PLATFORM_ID) platformId: Object) {
-    super(platformId);
-  }
-
-  get jsonConfigurations(): string {
-    return this.blinkooWebUtils!.encodeObject(this.configurations);
-  }
+  @Input() autoplay?: boolean;
+  @Input() muted?: boolean;
+  @Input() showCreator?: boolean;
 }
