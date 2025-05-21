@@ -8,12 +8,8 @@ import {
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
-
-import {
-  BlinkooFeedComponent,
-  BlinkooFeedConfiguration,
-} from '@blinkoo/components';
 import { BaseComponent } from '../base-component/base-component.component';
+import { BlinkooFeedElement } from '@blinkoo/components';
 
 @Component({
   selector: 'app-feed',
@@ -22,19 +18,32 @@ import { BaseComponent } from '../base-component/base-component.component';
   templateUrl: './feed.component.html',
 })
 export class FeedComponent extends BaseComponent {
-  @ViewChild('feed') feed!: ElementRef<BlinkooFeedComponent>;
+  @ViewChild('feed') feed!: ElementRef<BlinkooFeedElement>;
+
+  @Input() customBaseUrl?: string;
+  @Input() assetsPath?: string;
+  @Input() externalCustomerId?: string;
+  @Input() utmSource?: string;
+  @Input() utmCampaign?: string;
+  @Input() referrer?: string;
+  @Input() componentId?: string;
   @Input() title?: string;
   @Input() filters?: string;
-  @Input() playlistFilter?: string;
-  @Input() aspectRatio?: number;
-  @Input() feedPosition?: number;
-  @Input() configurations?: BlinkooFeedConfiguration;
+  @Input() playlist?: string;
+  @Input() position?: number;
+  @Input() autoplay?: boolean;
+  @Input() muted?: boolean;
+  @Input() showCreator?: boolean;
 
-  constructor(@Inject(PLATFORM_ID) platformId: Object) {
-    super(platformId);
+  togglePlay() {
+    this.feed.nativeElement.togglePlay();
   }
 
-  get jsonConfigurations(): string {
-    return this.blinkooWebUtils!.encodeObject(this.configurations);
+  next() {
+    this.feed.nativeElement.next();
+  }
+
+  previous() {
+    this.feed.nativeElement.previous();
   }
 }
