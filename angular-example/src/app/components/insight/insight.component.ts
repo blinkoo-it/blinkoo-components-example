@@ -5,6 +5,7 @@ import {
   Input,
   ViewChild,
 } from '@angular/core';
+import { BlinkooInsightElement } from '@blinkoo/components';
 
 @Component({
   selector: 'app-insight',

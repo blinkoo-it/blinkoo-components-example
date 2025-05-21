@@ -5,6 +5,7 @@ import {
   Input,
   ViewChild,
 } from '@angular/core';
+import { BlinkooSingleVideoElement } from '@blinkoo/components';
 
 @Component({
   selector: 'app-single-video',

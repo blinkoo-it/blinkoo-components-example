@@ -4,13 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "cp -rf node_modules/@blinkoo/components/assets public/blinkoo-assets & vite",
+    "copyBlinkooAssets": "rm -r public/blinkoo-assets 2> /dev/null && cp -r node_modules/@blinkoo/components/assets public/blinkoo-assets",
+    "dev": "npm run copyBlinkooAssets && vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@blinkoo/components": "2.0.0-beta.19",
+    "@blinkoo/components": "2.0.0-beta.21",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

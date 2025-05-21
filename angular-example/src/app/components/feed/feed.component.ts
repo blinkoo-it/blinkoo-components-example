@@ -6,6 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import '@blinkoo/components';
+import { BlinkooFeedElement } from '@blinkoo/components';
 
 @Component({
   selector: 'app-feed',

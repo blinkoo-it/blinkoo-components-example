@@ -22,7 +22,8 @@ The steps to add the blinkoo feed dependency are:
 
 ```json
 "scripts": {
-    "dev": "cp -rf node_modules/@blinkoo/components/assets public/blinkoo-assets & vite",
+    "copyBlinkooAssets": "rm -r public/blinkoo-assets 2> /dev/null && cp -r node_modules/@blinkoo/components/assets public/blinkoo-assets",
+    "dev": "npm run copyBlinkooAssets && vite",
 }
 ```
 
