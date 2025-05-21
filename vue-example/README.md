@@ -2,6 +2,14 @@
 
 The steps to add the blinkoo feed dependency are:
 
+- Add `@blinkoo/components` as a dependency in `package.json`
+
+```json
+"dependencies": {
+    "@blinkoo/components": "^2.0.0",
+}
+```
+
 - Add `vite-plugin-static-copy` as a dev dependency in `package.json`
 
 ```json
@@ -10,12 +18,34 @@ The steps to add the blinkoo feed dependency are:
 }
 ```
 
-- Add `@blinkoo/components` as a dev-dependency in `package.json` because you have to copy the library in build phase as follows
+- Copy the blinkoo assets in the `public` folder while running the app in development
 
 ```json
-"dev-dependencies": {
-    "@blinkoo/components": "^1.1.0",
+"scripts": {
+    "dev": "cp -rf node_modules/@blinkoo/components/assets public/blinkoo-assets & vite",
 }
+```
+
+- Add the `isCustomElement` property to the vue `compilerOptions` in `vite.config.js`.
+
+```ts
+export default defineConfig({
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          // treat all tags with a dash as custom elements
+          isCustomElement: tag =>
+            [
+              'blinkoo-feed',
+              'blinkoo-single-video',
+              'blinkoo-insight',
+            ].includes(tag),
+        },
+      },
+    }),
+  ],
+})
 ```
 
 - Set the `vite-plugin-static-copy` to copy library dependency files while building in `vite.config.ts`:
@@ -30,46 +60,22 @@ export default defineConfig({
           src: 'node_modules/@blinkoo/components/dist/assets',
           dest: 'blinkoo-assets',
         },
-        {
-          src: 'node_modules/@blinkoo/components/dist/canvaskit',
-          dest: 'blinkoo-assets',
-        },
       ],
     }),
   ],
 })
 ```
 
-- Initialize the library
+- Create a component wrapper for blinkoo-components (you can copy the ones in this repository in `src/components`)
 
-```html
-<script setup>
-  import { ref, onMounted } from 'vue'
-  import '@blinkoo/components'
-  import { BlinkooWebInit } from '@blinkoo/components'
+- Now you can import your desired wrapper component where you want to show the feed as in the following code:
 
-  const isInitialized = ref(false)
-
-  const initBlinkooComponents = async () => {
-    await BlinkooWebInit.init({
-      assetsPath: 'blinkoo-assets/',
-      customApiBasePath: 'http://localhost:4000', // only for development, remove parameter in production
-    })
-    isInitialized.value = true
-  }
-
-  onMounted(() => {
-    initBlinkooComponents()
-  })
+```vue
+<script>
+import FeedVideo from './components/FeedVideo.vue'
 </script>
+
+<FeedVideo ref="videoRef" title="Explore" assets-path="blinkoo-assets" />
 ```
 
-_NB_: you can add to the DOM any component only after the library initialization is completed
-
-- Create the `Feed.vue` and `SingleVideo.vue` component (you can copy the file in this repository)
-
-- Use any component where you want as in the next example
-
-```html
-<Feed title="Example Title" />
-```
+For more information on components parameters, check out our [documentation](https://documentation.blinkoo.com)

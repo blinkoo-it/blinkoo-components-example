@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BlinkooSingleVideoElement } from '@blinkoo/components'
+import { BlinkooInsightElement } from '@blinkoo/components'
 import { ref } from 'vue'
 import '@blinkoo/components'
 
@@ -14,10 +14,6 @@ withDefaults(
     utmCampaign?: string
     referrer?: string
     componentId?: string
-    postId?: string
-    autoplay?: boolean
-    muted?: boolean
-    showCreator?: boolean
   }>(),
   {
     // default values
@@ -29,38 +25,31 @@ withDefaults(
     utmCampaign: undefined,
     referrer: undefined,
     componentId: undefined,
-    postId: undefined,
-    autoplay: undefined,
-    muted: undefined,
-    showCreator: undefined,
   },
 )
 
 // reference to the web component
-const singleVideoRef = ref<BlinkooSingleVideoElement | null>(null)
+const insightRef = ref<BlinkooInsightElement | null>(null)
 
 // Expose methods for parent components to use
-const togglePlay = () => singleVideoRef.value?.togglePlay()
+const sendCustomEvent = (eventName: string, obj: Record<string, string>) =>
+  insightRef.value?.sendCustomEvent(eventName, obj)
 
 defineExpose({
-  togglePlay,
+  sendCustomEvent,
 })
 </script>
 
 <template>
-  <blinkoo-single-video
-    ref="singleVideoRef"
+  <blinkoo-insight
+    ref="insightRef"
     :environment="environment"
-    :custom-base-url="customBaseUrl"
+    :custom-base-ur="customBaseUrl"
     :assets-path="assetsPath"
     :external-user-id="externalUserId"
     :utm-source="utmSource"
     :utm-campaign="utmCampaign"
     :referrer="referrer"
     :component-id="componentId"
-    :post-id="postId"
-    :autoplay="autoplay"
-    :muted="muted"
-    :show-creator="showCreator"
   />
 </template>
