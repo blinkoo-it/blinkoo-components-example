@@ -21,13 +21,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "./node_modules/@blinkoo/components/dist/assets",
-                "output": "/assets"
-              },
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@blinkoo/components/dist/canvaskit",
-                "output": "/canvaskit"
+                "input": "./node_modules/@blinkoo/components/assets",
+                "output": "/blinkoo-assets"
               },
               {
                 "glob": "**/*",
@@ -47,8 +42,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "5MB",
+                  "maximumError": "6MB"
                 },
                 {
                   "type": "anyComponentStyle",

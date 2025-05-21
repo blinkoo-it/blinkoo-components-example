@@ -2,11 +2,11 @@
 
 The steps to add the blinkoo feed dependency are:
 
-- Add `@blinkoo/components` as a dev-dependency in `package.json` because you have to copy the library in build phase as follows
+- Add `@blinkoo/components` as a dev-dependency in `package.json`
 
 ```json
 "dev-dependencies": {
-    "@blinkoo/components": "^1.1.0",
+    "@blinkoo/components": "^2.0.0",
 }
 ```
 
@@ -16,53 +16,28 @@ The steps to add the blinkoo feed dependency are:
 ...
 "options": {
     "assets": [
-        ...
         {
             "glob": "**/*",
             "input": "./node_modules/@blinkoo/components/dist/assets",
-            "output": "/assets"
-        },
-        {
-            "glob": "**/*",
-            "input": "./node_modules/@blinkoo/components/dist/canvaskit",
-            "output": "/canvaskit"
-        },
+            "output": "/blinkoo-assets"
+        }
     ]
 }
 ```
 
-- Initialize the library. Since it could not be loaded during the server-side rendering stage, we need to import the library only on the browser. To do so, in the `app.components.ts` add the following code:
 
-```typescript
-type BlinkooModule = typeof import("@blinkoo/components");
 
-export class AppComponent implements OnInit {
-  isInitialized = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
-
-  ngOnInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-    import("@blinkoo/components").then((blinkooModule) => {
-      this.initBlinkooLibrary(blinkooModule);
-    });
-  }
-
-  async initBlinkooLibrary(blinkooModule: BlinkooModule) {
-    await blinkooModule.BlinkooWebInit.init({
-      customApiBasePath: "http://localhost:4000", // only for development, remove parameter in production
-    });
-    this.isInitialized = true;
-  }
-}
-```
-
+- Create a component wrapper for blinkoo-components (you can copy the ones in this repository un `src/app/components`). Remember to also copy the `BaseComponent` which implements the SSR logic to render the component only in the browser (similarly on how is imported the library in `app.component.ts`)
+<br><br>
 _NB_: you can add to the DOM any component only after the library initialization is completed. Also, importing any component or utility code on the server side will break the code, so they must be imported only on browser.
+<br>
+The `BaseComponent` offer a `renderReady` property you can use to check if the library is correctly initialized.
 
-- Create the `FeedComponent` or `SingleVideoComponent` as made in this repository (you can copy it to your project). Remember to also copy the `BaseComponent` which implements the SSR logic to render the component only in the browser (similarly on how is imported the library in `app.component.ts`).
-
-- Now you can import your `FeedComponent` or any other component where you want to show the feed as in the following code:
+- Now you can import your desired wrapper component where you want to show it. For example to you can use the feed as in the following code:
 
 ```html
 <app-feed filter="filter1,filter2" title="Example feed"></app-feed>
 ```
+
+For more information on components parameters, check out our [documentation](https://documentation.blinkoo.com)

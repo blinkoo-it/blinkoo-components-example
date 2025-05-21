@@ -1,40 +1,46 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { FeedComponent } from './feed/feed.component';
+import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { InsightComponent } from './insight/insight.component';
 import { SingleVideoComponent } from './single-video/single-video.component';
-import { BlinkooFeedConfiguration } from '@blinkoo/components';
+import { FeedComponent } from './feed/feed.component';
 
-type BlinkooModule = typeof import('@blinkoo/components');
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, FeedComponent, SingleVideoComponent],
+  imports: [
+    CommonModule,
+    InsightComponent,
+    SingleVideoComponent,
+    FeedComponent,
+  ],
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
+  @ViewChild('feed')
+  feed!: FeedComponent;
+
+  @ViewChild('insight')
+  insight!: InsightComponent;
+
   title = 'angular-ssr-example';
-  isInitialized = false;
   shownId = 1;
-  configurations: BlinkooFeedConfiguration = {
-    isCreatorEnabled: true,
-  };
-
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
-
-  ngOnInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-    import('@blinkoo/components').then((blinkooModule) => {
-      this.initBlinkooLibrary(blinkooModule);
-    });
-  }
-
-  async initBlinkooLibrary(blinkooModule: BlinkooModule) {
-    await blinkooModule.BlinkooWebInit.init({
-      customApiBasePath: 'http://localhost:4000', // only for development, remove parameter in production
-    });
-    this.isInitialized = true;
-  }
+  showCreator = false;
 
   changeShownId(id: number) {
     this.shownId = id;
+  }
+
+  toggleCreator() {
+    this.showCreator = !this.showCreator;
+  }
+
+  togglePlayFeed() {
+    this.feed.togglePlay();
+  }
+
+  sendCustomEvent() {
+    this.insight.sendCustomEvent('custom event 1', {
+      param1: 'value 1',
+      param2: 'value2',
+    });
   }
 }

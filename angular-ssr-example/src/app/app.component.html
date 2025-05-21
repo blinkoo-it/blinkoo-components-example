@@ -1,18 +1,39 @@
-<ng-container *ngIf="isInitialized">
-  <div style="height: 600px">
-    <app-feed
-      *ngIf="shownId == 1"
-      title="Example feed"
-      [aspectRatio]="0.8"
-      [configurations]="configurations"
-    ></app-feed>
-    <app-single-video
-      *ngIf="shownId == 2"
-      postId="POST_ID"
-      [aspectRatio]="0.5625"
-    ></app-single-video>
-  </div>
+<div [style.width]="'300px'">
+  <!-- ! customBaseUrl is required only in development, do not release it in production -->
+  @if (shownId === 1) {
+  <app-feed
+    #feed
+    title="Titolone"
+    customBaseUrl="http://localhost:4000"
+    assetsPath="blinkoo-assets/"
+    environment="development"
+    [position]="1"
+    [showCreator]="showCreator"
+    externalCustomerId="francesco"
+  ></app-feed>
 
+  } @if (shownId === 2) {
+  <app-single-video
+    postId="ccb2a799-1aa1-40c9-a431-7dae83a8f61d"
+    assetsPath="blinkoo-assets/"
+    customBaseUrl="http://localhost:4000"
+    [showCreator]="!showCreator"
+  ></app-single-video>
+  }
+
+  <app-insight
+    #insight
+    assetsPath="blinkoo-assets/"
+    customBaseUrl="http://localhost:4000"
+  ></app-insight>
+</div>
+
+<button (click)="changeShownId(1)">Show feed</button>
+<button (click)="togglePlayFeed()">Toggle feed play</button>
+<button (click)="changeShownId(2)">Show single video</button>
+<button (click)="toggleCreator()">Toggle creator</button>
+<button (click)="sendCustomEvent()">Track event</button>
+
+<!-- 
   <button (click)="changeShownId(1)">Show feed</button>
-  <button (click)="changeShownId(2)">Show single video</button>
-</ng-container>
+  <button (click)="changeShownId(2)">Show single video</button> -->
