@@ -30,4 +30,8 @@ export class SingleVideoComponent extends BaseComponent {
   @Input() autoplay?: boolean;
   @Input() muted?: boolean;
   @Input() showCreator?: boolean;
+
+  toggleVideo() {
+    this.singleVideo.nativeElement.togglePlay();
+  }
 }
