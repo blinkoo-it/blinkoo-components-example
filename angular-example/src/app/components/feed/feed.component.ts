@@ -2,7 +2,9 @@ import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
+  EventEmitter,
   Input,
+  Output,
   ViewChild,
 } from '@angular/core';
 import '@blinkoo/components';
@@ -32,6 +34,8 @@ export class FeedComponent {
   @Input() muted?: boolean;
   @Input() showCreator?: boolean;
 
+  @Output() feedScroll: EventEmitter<any> = new EventEmitter<any>();
+
   togglePlay() {
     this.feed.nativeElement.togglePlay();
   }
@@ -42,5 +46,10 @@ export class FeedComponent {
 
   previous() {
     this.feed.nativeElement.previous();
+  }
+
+  onScroll(event: any) {
+    // TODO add correct type
+    this.feedScroll.next(event);
   }
 }
