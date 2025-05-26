@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import Feed, { FeedRef } from "./components/feed";
 import SingleVideo, { SingleVideoRef } from "./components/single-video";
 import Insight, { InsightRef } from "./components/insight";
+import { FeedScrollEvent } from "@blinkoo/components";
 
 export default function Home() {
   const [shownItem, setShownItem] = useState<number>(1);
@@ -11,30 +12,35 @@ export default function Home() {
   const feedRef = useRef<FeedRef>(null);
   const singleVideoRef = useRef<SingleVideoRef>(null);
   const insightRef = useRef<InsightRef>(null);
+
+  const onFeedScroll = (event: CustomEvent<FeedScrollEvent>) => {
+    console.log("scroll", event.detail);
+  };
   return (
     <span>
       <div style={{ height: "600px" }}>
         {shownItem == 1 ? (
           <Feed
             ref={feedRef}
-            assets-path="blinkoo-assets/"
+            // customBaseUrl is required only in development, do not release it in production
             custom-base-url="http://localhost:4000"
             title="Amazing places"
             show-creator={showCreator}
+            onFeedScroll={onFeedScroll}
           ></Feed>
         ) : (
           <SingleVideo
             ref={singleVideoRef}
-            assets-path="blinkoo-assets/"
+            // customBaseUrl is required only in development, do not release it in production
             custom-base-url="http://localhost:4000"
-            post-id="0af11de1-5061-4b20-a292-1269ed1b0a0e"
+            post-id="POST_ID"
             show-creator={showCreator}
           />
         )}
       </div>
       <Insight
         ref={insightRef}
-        assets-path="blinkoo-assets/"
+        // customBaseUrl is required only in development, do not release it in production
         custom-base-url="http://localhost:4000"
       ></Insight>
 

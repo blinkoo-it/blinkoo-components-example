@@ -4,9 +4,10 @@ type BlinkooModule = typeof import("@blinkoo/components");
 
 export interface BaseProps {
   children?: ReactNode;
+  onReady?: () => void;
 }
 
-const BlinkooComponentWrapper = ({ children }: BaseProps) => {
+const BlinkooComponentWrapper = ({ children, onReady }: BaseProps) => {
   const [blinkooModule, setBlinkooModule] = useState<BlinkooModule>();
 
   useEffect(() => {
@@ -19,6 +20,13 @@ const BlinkooComponentWrapper = ({ children }: BaseProps) => {
       setBlinkooModule(blinkooModule);
     });
   }, []);
+
+  useEffect(() => {
+    if (blinkooModule && onReady) {
+      // Use setTimeout to ensure DOM is ready
+      setTimeout(onReady, 0);
+    }
+  }, [blinkooModule, onReady]);
 
   if (!blinkooModule) return null;
   return <span>{children}</span>;

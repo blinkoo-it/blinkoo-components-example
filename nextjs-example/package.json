@@ -4,14 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "copyBlinkooAssets": "rm -r public/blinkoo-assets 2> /dev/null && cp -r node_modules/@blinkoo/components/assets public/blinkoo-assets",
-    "dev": "npm run copyBlinkooAssets && next dev",
-    "build": "npm run copyBlinkooAssets && next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@blinkoo/components": "2.0.0-beta.22",
+    "@blinkoo/components": "2.0.0-beta.30",
     "next": "^15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

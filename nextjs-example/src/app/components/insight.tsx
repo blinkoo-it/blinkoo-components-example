@@ -27,8 +27,7 @@ const Insight = forwardRef<InsightRef, InsightArgs>((params, ref) => {
         ref={insightRef}
         environment={params.environment}
         custom-base-url={params["custom-base-url"]}
-        assets-path={params["assets-path"]}
-        external-user-id={params["external-user-id"]}
+        external-customer-id={params["external-customer-id"]}
         utm-source={params["utm-source"]}
         utm-campaign={params["utm-campaign"]}
         referrer={params.referrer}
