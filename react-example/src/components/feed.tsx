@@ -1,8 +1,14 @@
 "use client";
-import { forwardRef, useImperativeHandle, useRef } from "react";
+import {
+  BlinkooFeedAttributes,
+  BlinkooFeedElement,
+  FeedScrollEvent,
+} from "@blinkoo/components";
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 
 type FeedArgs = Omit<BlinkooFeedAttributes, keyof HTMLElement> & {
   title?: string;
+  onFeedScroll?: (event: CustomEvent<FeedScrollEvent>) => void;
 };
 
 export interface FeedRef {
@@ -20,13 +26,22 @@ const Feed = forwardRef<FeedRef, FeedArgs>((params, ref) => {
     previous: () => feedRef.current?.previous(),
   }));
 
+  useEffect(() => {
+    const feed = feedRef.current;
+    if (!feed || !params.onFeedScroll) return;
+    const handler = ($event: CustomEvent<FeedScrollEvent>) =>
+      params.onFeedScroll!($event);
+    feed.addEventListener("feedScroll", handler);
+
+    return () => feed?.removeEventListener("feedScroll", handler);
+  }, [feedRef, params.onFeedScroll]);
+
   return (
     <blinkoo-feed
       ref={feedRef}
       environment={params.environment}
       custom-base-url={params["custom-base-url"]}
-      assets-path={params["assets-path"]}
-      external-user-id={params["external-user-id"]}
+      external-customer-id={params["external-customer-id"]}
       utm-source={params["utm-source"]}
       utm-campaign={params["utm-campaign"]}
       referrer={params.referrer}

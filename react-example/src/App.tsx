@@ -6,25 +6,30 @@ import Insight, { InsightRef } from "./components/insight";
 
 function App() {
   const [shownItem, setShownItem] = useState<number>(1);
-  const [showCreator, setShowCreator] = useState<string>(false.toString());
+  const [showCreator, setShowCreator] = useState<boolean>(false);
   const feedRef = useRef<FeedRef>(null);
   const singleVideoRef = useRef<SingleVideoRef>(null);
   const insightRef = useRef<InsightRef>(null);
+
+  const onFeedScroll = (event: CustomEvent) => {
+    console.log("scroll", event.detail);
+  };
   return (
     <>
       <div style={{ height: "600px" }}>
         {shownItem == 1 ? (
           <Feed
             ref={feedRef}
-            assets-path="blinkoo-assets/"
+            // customBaseUrl is required only in development, do not release it in production
             custom-base-url="http://localhost:4000"
             title="Amazing places"
             show-creator={showCreator}
+            onFeedScroll={onFeedScroll}
           ></Feed>
         ) : (
           <SingleVideo
             ref={singleVideoRef}
-            assets-path="blinkoo-assets/"
+            // customBaseUrl is required only in development, do not release it in production
             custom-base-url="http://localhost:4000"
             post-id="0af11de1-5061-4b20-a292-1269ed1b0a0e"
             show-creator={showCreator}
@@ -33,17 +38,13 @@ function App() {
       </div>
       <Insight
         ref={insightRef}
-        assets-path="blinkoo-assets/"
+        // customBaseUrl is required only in development, do not release it in production
         custom-base-url="http://localhost:4000"
       ></Insight>
 
       <button onClick={() => setShownItem(1)}>Show feed</button>
       <button onClick={() => setShownItem(2)}>Show single video</button>
-      <button
-        onClick={() =>
-          setShowCreator(showCreator === "false" ? "true" : "false")
-        }
-      >
+      <button onClick={() => setShowCreator(!showCreator)}>
         Toggle creator
       </button>
       <button onClick={() => feedRef.current?.next()}>Next</button>

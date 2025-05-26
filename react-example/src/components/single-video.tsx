@@ -1,5 +1,9 @@
 "use client";
 
+import {
+  BlinkooSingleVideoAttributes,
+  BlinkooSingleVideoElement,
+} from "@blinkoo/components";
 import { forwardRef, useImperativeHandle, useRef } from "react";
 
 type SingleVideoArgs = Omit<BlinkooSingleVideoAttributes, keyof HTMLElement>;
@@ -21,8 +25,7 @@ const SingleVideo = forwardRef<SingleVideoRef, SingleVideoArgs>(
         ref={singleVideoRef}
         environment={params.environment}
         custom-base-url={params["custom-base-url"]}
-        assets-path={params["assets-path"]}
-        external-user-id={params["external-user-id"]}
+        external-customer-id={params["external-customer-id"]}
         utm-source={params["utm-source"]}
         utm-campaign={params["utm-campaign"]}
         referrer={params.referrer}
