@@ -8,8 +8,7 @@ withDefaults(
   defineProps<{
     environment?: string
     customBaseUrl?: string
-    assetsPath?: string
-    externalUserId?: string
+    externalCustomerId?: string
     utmSource?: string
     utmCampaign?: string
     referrer?: string
@@ -24,7 +23,7 @@ withDefaults(
     environment: undefined,
     customBaseUrl: undefined,
     assetsPath: undefined,
-    externalUserId: undefined,
+    externalCustomerId: undefined,
     utmSource: undefined,
     utmCampaign: undefined,
     referrer: undefined,
@@ -52,8 +51,7 @@ defineExpose({
     ref="singleVideoRef"
     :environment="environment"
     :custom-base-url="customBaseUrl"
-    :assets-path="assetsPath"
-    :external-user-id="externalUserId"
+    :external-customer-id="externalCustomerId"
     :utm-source="utmSource"
     :utm-campaign="utmCampaign"
     :referrer="referrer"

@@ -8,8 +8,7 @@ withDefaults(
   defineProps<{
     environment?: string
     customBaseUrl?: string
-    assetsPath?: string
-    externalUserId?: string
+    externalCustomerId?: string
     utmSource?: string
     utmCampaign?: string
     referrer?: string
@@ -20,7 +19,7 @@ withDefaults(
     environment: undefined,
     customBaseUrl: undefined,
     assetsPath: undefined,
-    externalUserId: undefined,
+    externalCustomerId: undefined,
     utmSource: undefined,
     utmCampaign: undefined,
     referrer: undefined,
@@ -44,9 +43,8 @@ defineExpose({
   <blinkoo-insight
     ref="insightRef"
     :environment="environment"
-    :custom-base-ur="customBaseUrl"
-    :assets-path="assetsPath"
-    :external-user-id="externalUserId"
+    :custom-base-url="customBaseUrl"
+    :external-customer-id="externalCustomerId"
     :utm-source="utmSource"
     :utm-campaign="utmCampaign"
     :referrer="referrer"

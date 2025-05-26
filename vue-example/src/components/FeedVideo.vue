@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { BlinkooFeedElement } from '@blinkoo/components'
+import { BlinkooFeedElement, FeedScrollEvent } from '@blinkoo/components'
 import '@blinkoo/components'
 
 // props definition
@@ -8,8 +8,7 @@ withDefaults(
   defineProps<{
     environment?: string
     customBaseUrl?: string
-    assetsPath?: string
-    externalUserId?: string
+    externalCustomerId?: string
     utmSource?: string
     utmCampaign?: string
     referrer?: string
@@ -27,7 +26,7 @@ withDefaults(
     environment: undefined,
     customBaseUrl: undefined,
     assetsPath: undefined,
-    externalUserId: undefined,
+    externalCustomerId: undefined,
     utmSource: undefined,
     utmCampaign: undefined,
     referrer: undefined,
@@ -55,6 +54,14 @@ defineExpose({
   next,
   previous,
 })
+
+const emit = defineEmits<{
+  feedScroll: [event: FeedScrollEvent]
+}>()
+
+const handleScroll = (event: CustomEvent<FeedScrollEvent>) => {
+  emit('feedScroll', event.detail)
+}
 </script>
 
 <template>
@@ -62,8 +69,7 @@ defineExpose({
     ref="blinkooFeedRef"
     :environment="environment"
     :custom-base-url="customBaseUrl"
-    :assets-path="assetsPath"
-    :external-user-id="externalUserId"
+    :external-customer-id="externalCustomerId"
     :utm-source="utmSource"
     :utm-campaign="utmCampaign"
     :referrer="referrer"
@@ -75,5 +81,6 @@ defineExpose({
     :autoplay="autoplay"
     :muted="muted"
     :show-creator="showCreator"
+    @feedScroll="handleScroll"
   />
 </template>

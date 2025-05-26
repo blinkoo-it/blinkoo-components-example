@@ -4,8 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "copyBlinkooAssets": "rm -r public/blinkoo-assets 2> /dev/null && cp -r node_modules/@blinkoo/components/assets public/blinkoo-assets",
-    "dev": "npm run copyBlinkooAssets && vite",
+    "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
@@ -14,7 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@blinkoo/components": "2.0.0-beta.22",
+    "@blinkoo/components": "2.0.0-beta.30",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5"
   },
@@ -32,7 +31,6 @@
     "prettier": "^3.3.3",
     "typescript": "~5.5.4",
     "vite": "^5.4.8",
-    "vue-tsc": "^2.1.6",
-    "vite-plugin-static-copy": "^1.0.6"
+    "vue-tsc": "^2.1.6"
   }
 }

@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import FeedVideo from './components/FeedVideo.vue'
 import SingleVideo from './components/SingleVideo.vue'
 import InsightElement from './components/InsightElement.vue'
+import { FeedScrollEvent } from '@blinkoo/components'
 
 const shownItem = ref(1)
 const showCreator = ref(false)
@@ -17,30 +18,34 @@ const videoTogglePlay = () => singleVideoRef.value?.togglePlay()
 const toggleCreator = () => (showCreator.value = !showCreator.value)
 const sendCustomEvent = () =>
   insightRef.value?.sendCustomEvent('evento di prova', { key: 'value' })
+
+const handleFeedScroll = (event: FeedScrollEvent) =>
+  console.log('Feed scrolled:', event)
 </script>
 
 <template>
   <div>
     <div style="height: 600px">
+      <!-- customBaseUrl is required only in development, do not release it in production -->
       <FeedVideo
         v-if="shownItem === 1"
         ref="videoRef"
         title="Explore"
-        assets-path="blinkoo-assets"
         custom-base-url="http://localhost:4000"
         :show-creator="showCreator"
+        v-on:feed-scroll="handleFeedScroll"
       />
+      <!-- customBaseUrl is required only in development, do not release it in production -->
       <SingleVideo
         v-else
         ref="singleVideoRef"
-        assets-path="blinkoo-assets"
         custom-base-url="http://localhost:4000"
         post-id="0af11de1-5061-4b20-a292-1269ed1b0a0e"
         :show-creator="showCreator"
       />
+      <!-- customBaseUrl is required only in development, do not release it in production -->
       <InsightElement
         ref="insightRef"
-        assets-path="blinkoo-assets"
         custom-base-url="http://localhost:4000"
       />
     </div>
