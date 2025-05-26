@@ -19,7 +19,6 @@ import { BlinkooFeedElement, FeedScrollEvent } from '@blinkoo/components';
 export class FeedComponent {
   @ViewChild('feed') feed!: ElementRef<BlinkooFeedElement>;
   @Input() customBaseUrl?: string;
-  @Input() assetsPath?: string;
   @Input() externalCustomerId?: string;
   @Input() utmSource?: string;
   @Input() utmCampaign?: string;

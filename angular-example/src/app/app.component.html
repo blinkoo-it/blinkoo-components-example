@@ -6,7 +6,6 @@
       #feed
       title="Titolone"
       customBaseUrl="http://localhost:4000"
-      assetsPath="blinkoo-assets/"
       environment="development"
       [position]="1"
       [showCreator]="showCreator"
@@ -17,16 +16,11 @@
     <app-single-video
       *ngIf="shownId == 2"
       postId="POST_ID"
-      assetsPath="blinkoo-assets/"
       customBaseUrl="http://localhost:4000"
       [showCreator]="!showCreator"
     ></app-single-video>
     <!-- customBaseUrl is required only in development, do not release it in production -->
-    <app-insight
-      #insight
-      assetsPath="blinkoo-assets/"
-      customBaseUrl="http://localhost:4000"
-    ></app-insight>
+    <app-insight #insight customBaseUrl="http://localhost:4000"></app-insight>
   </div>
 
   <button (click)="changeShownId(1)">Show feed</button>

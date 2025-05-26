@@ -17,7 +17,6 @@ export class InsightComponent {
   @ViewChild('insight')
   insight!: ElementRef<BlinkooInsightElement>;
   @Input() customBaseUrl?: string;
-  @Input() assetsPath?: string;
   @Input() externalCustomerId?: string;
   @Input() utmSource?: string;
   @Input() utmCampaign?: string;
