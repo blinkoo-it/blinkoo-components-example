@@ -5,7 +5,6 @@
     #feed
     title="Titolone"
     customBaseUrl="http://localhost:4000"
-    assetsPath="blinkoo-assets/"
     environment="development"
     [position]="1"
     [showCreator]="showCreator"
@@ -14,20 +13,16 @@
   ></app-feed>
 
   } @if (shownId === 2) {
+  <!-- ! customBaseUrl is required only in development, do not release it in production -->
   <app-single-video
     #singleVideo
     postId="ccb2a799-1aa1-40c9-a431-7dae83a8f61d"
-    assetsPath="blinkoo-assets/"
     customBaseUrl="http://localhost:4000"
     [showCreator]="!showCreator"
   ></app-single-video>
   }
-
-  <app-insight
-    #insight
-    assetsPath="blinkoo-assets/"
-    customBaseUrl="http://localhost:4000"
-  ></app-insight>
+  <!-- ! customBaseUrl is required only in development, do not release it in production -->
+  <app-insight #insight customBaseUrl="http://localhost:4000"></app-insight>
 </div>
 
 <button (click)="changeShownId(1)">Show feed</button>

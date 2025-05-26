@@ -20,7 +20,6 @@ import { BaseComponent } from '../../base-component/base-component.component';
 export class FeedComponent extends BaseComponent {
   @ViewChild('feed') feed!: ElementRef<BlinkooFeedElement>;
   @Input() customBaseUrl?: string;
-  @Input() assetsPath?: string;
   @Input() externalCustomerId?: string;
   @Input() utmSource?: string;
   @Input() utmCampaign?: string;

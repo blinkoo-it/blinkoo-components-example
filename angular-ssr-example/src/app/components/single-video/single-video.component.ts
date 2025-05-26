@@ -20,7 +20,6 @@ export class SingleVideoComponent extends BaseComponent {
   singleVideo!: ElementRef<BlinkooSingleVideoElement>; // TODO put correct interface
 
   @Input() customBaseUrl?: string;
-  @Input() assetsPath?: string;
   @Input() externalCustomerId?: string;
   @Input() utmSource?: string;
   @Input() utmCampaign?: string;
