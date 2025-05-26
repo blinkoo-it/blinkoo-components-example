@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FeedComponent } from './components/feed/feed.component';
 import { SingleVideoComponent } from './components/single-video/single-video.component';
 import { InsightComponent } from './components/insight/insight.component';
+import { FeedScrollEvent } from '@blinkoo/components';
 
 @Component({
   selector: 'app-root',
@@ -42,5 +43,9 @@ export class AppComponent {
       param1: 'value 1',
       param2: 'value2',
     });
+  }
+
+  onScroll(data: FeedScrollEvent) {
+    console.log('scroll', data);
   }
 }

@@ -11,6 +11,7 @@
       [position]="1"
       [showCreator]="showCreator"
       externalCustomerId="francesco"
+      (feedScroll)="onScroll($event)"
     ></app-feed>
     <!-- customBaseUrl is required only in development, do not release it in production -->
     <app-single-video

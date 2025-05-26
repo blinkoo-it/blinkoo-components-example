@@ -8,7 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import '@blinkoo/components';
-import { BlinkooFeedElement } from '@blinkoo/components';
+import { BlinkooFeedElement, FeedScrollEvent } from '@blinkoo/components';
 
 @Component({
   selector: 'app-feed',
@@ -34,7 +34,8 @@ export class FeedComponent {
   @Input() muted?: boolean;
   @Input() showCreator?: boolean;
 
-  @Output() feedScroll: EventEmitter<any> = new EventEmitter<any>();
+  @Output() feedScroll: EventEmitter<FeedScrollEvent> =
+    new EventEmitter<FeedScrollEvent>();
 
   togglePlay() {
     this.feed.nativeElement.togglePlay();
@@ -48,8 +49,7 @@ export class FeedComponent {
     this.feed.nativeElement.previous();
   }
 
-  onScroll(event: any) {
-    // TODO add correct type
-    this.feedScroll.next(event);
+  onScroll(event: CustomEvent<FeedScrollEvent>) {
+    this.feedScroll.next(event.detail);
   }
 }
