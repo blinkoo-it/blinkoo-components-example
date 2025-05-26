@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { FeedComponent } from './feed/feed.component';
+import { FeedComponent } from './components/feed/feed.component';
 
 export const routes: Routes = [
-    {
-        path: 'feed',
-        component: FeedComponent,
-      },
+  {
+    path: 'feed',
+    component: FeedComponent,
+  },
 ];

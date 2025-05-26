@@ -1,25 +1,24 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
-  Inject,
+  EventEmitter,
   Input,
-  PLATFORM_ID,
+  Output,
   ViewChild,
 } from '@angular/core';
-import { BaseComponent } from '../base-component/base-component.component';
-import { BlinkooFeedElement } from '@blinkoo/components';
+import '@blinkoo/components';
+import { BlinkooFeedElement, FeedScrollEvent } from '@blinkoo/components';
+import { BaseComponent } from '../../base-component/base-component.component';
 
 @Component({
   selector: 'app-feed',
-  imports: [CommonModule],
+  imports: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './feed.component.html',
 })
 export class FeedComponent extends BaseComponent {
   @ViewChild('feed') feed!: ElementRef<BlinkooFeedElement>;
-
   @Input() customBaseUrl?: string;
   @Input() assetsPath?: string;
   @Input() externalCustomerId?: string;
@@ -27,6 +26,7 @@ export class FeedComponent extends BaseComponent {
   @Input() utmCampaign?: string;
   @Input() referrer?: string;
   @Input() componentId?: string;
+
   @Input() title?: string;
   @Input() filters?: string;
   @Input() playlist?: string;
@@ -34,6 +34,9 @@ export class FeedComponent extends BaseComponent {
   @Input() autoplay?: boolean;
   @Input() muted?: boolean;
   @Input() showCreator?: boolean;
+
+  @Output() feedScroll: EventEmitter<FeedScrollEvent> =
+    new EventEmitter<FeedScrollEvent>();
 
   togglePlay() {
     this.feed.nativeElement.togglePlay();
@@ -45,5 +48,9 @@ export class FeedComponent extends BaseComponent {
 
   previous() {
     this.feed.nativeElement.previous();
+  }
+
+  onScroll(event: CustomEvent<FeedScrollEvent>) {
+    this.feedScroll.next(event.detail);
   }
 }

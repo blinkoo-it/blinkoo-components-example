@@ -21,11 +21,6 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "./node_modules/@blinkoo/components/assets",
-                "output": "/blinkoo-assets"
-              },
-              {
-                "glob": "**/*",
                 "input": "public"
               }
             ],

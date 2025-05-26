@@ -6,7 +6,7 @@ import {
   Input,
   ViewChild,
 } from '@angular/core';
-import { BaseComponent } from '../base-component/base-component.component';
+import { BaseComponent } from '../../base-component/base-component.component';
 import { BlinkooSingleVideoElement } from '@blinkoo/components';
 
 @Component({

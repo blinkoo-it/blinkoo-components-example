@@ -1,8 +1,9 @@
-import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InsightComponent } from './insight/insight.component';
-import { SingleVideoComponent } from './single-video/single-video.component';
-import { FeedComponent } from './feed/feed.component';
+import { InsightComponent } from './components/insight/insight.component';
+import { SingleVideoComponent } from './components/single-video/single-video.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { FeedScrollEvent } from '@blinkoo/components';
 
 @Component({
   selector: 'app-root',
@@ -49,5 +50,9 @@ export class AppComponent {
       param1: 'value 1',
       param2: 'value2',
     });
+  }
+
+  onScroll(data: FeedScrollEvent) {
+    console.log('scroll', data);
   }
 }
