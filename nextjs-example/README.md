@@ -15,9 +15,9 @@ The steps to add the blinkoo feed dependency are:
 ```typescript
 declare namespace JSX {
   interface IntrinsicElements {
-    "blinkoo-feed": any;
-    "blinkoo-single-video": any;
-    "blinkoo-insight": any;
+    "blinkoo-feed": unknown;
+    "blinkoo-single-video": unknown;
+    "blinkoo-insight": unknown;
   }
 }
 ```
